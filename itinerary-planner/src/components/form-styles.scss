@@ -1,0 +1,63 @@
+body {
+  font-family: serif;
+  font-size: 20px;
+  background: #ddd1c7;
+}
+
+form {
+  margin: 3rem auto 0;
+  width: 40rem;
+
+  div {
+    width: inherit;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    color: #2a2b2a;
+  }
+
+  input,
+  select,
+  textarea {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    width: inherit;
+    height: 2.25rem;
+
+    border: solid;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: #495837;
+    background: #495837;
+
+    font-size: 17px;
+    font-family: inherit;
+    color: #ebefe6;
+
+    box-sizing: border-box;
+
+    // Change the placeholder text color
+    &::placeholder {
+      color: #d7e0cd; /* Change this to your desired placeholder color */
+      opacity: 0.65; /* Set opacity to 1 for full visibility */
+    }
+  }
+
+  input[type="submit"] {
+    height: 2.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #5b4434;
+    border-radius: 10px;
+    border-color: #2a2b2a;
+    cursor: pointer;
+  }
+
+  textarea {
+    height: 5rem;
+  }
+}
