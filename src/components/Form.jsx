@@ -197,6 +197,7 @@ function Form() {
                 <input type="submit" />
             </form>
 
+            <h2>Travelers</h2>
             <div>
                 {
                     (() => {
