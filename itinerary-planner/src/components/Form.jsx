@@ -10,8 +10,41 @@ const Field = ({ label, id, value, ...rest }) => (
     </div>
 );
 
+const UserCard = ({ pref, userIndex }) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const toggleDetails = () => {
+        setIsExpanded(prevState => !prevState);
+    };
+
+    return (
+        <div class="user-card" key={userIndex}>
+            <h2>Traveler {userIndex + 1}</h2>
+            <button className="see-more" onClick={toggleDetails}>
+                {isExpanded ? 'See Less...' : 'See More...'}
+            </button>
+            {isExpanded && (
+                <div>
+                    <p><strong>Season:</strong> {pref.season}</p>
+                    <p><strong>Activity Budget:</strong> {pref['activity-budget']}</p>
+                    <p><strong>Meal Budget:</strong> {pref['meal-budget']}</p>
+                    <p><strong>Nature or City:</strong> {pref['nature-city']}</p>
+                    <p><strong>Indoor or Outdoor:</strong> {pref['indoor-outdoor']}</p>
+                    <p><strong>Departing Location:</strong> {pref['departing-loc']}</p>
+                    <p><strong>Transit:</strong> {pref.transit}</p>
+                    <p><strong>Accommodation:</strong> {pref.accomodation}</p>
+                </div>
+            )}
+        </div>
+    );
+};
+
 function Form() {
+    // Handle submission of form and updating of user cards
     const [formData, setFormData] = useState({});
+    const [fileContent, setFileContent] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
@@ -25,15 +58,26 @@ function Form() {
                 body: JSON.stringify(formData), // Send the form data
             });
 
-            if (response.ok) {
-                alert('Data written to file successfully!');
-            } else {
-                alert('Failed to write data to file.');
+            if (!response.ok) {
+                alert('Failed to save traveler information.');
             }
         } catch (error) {
             alert('An error occurred: ' + error.message);
         }
         setFormData({});
+
+        try {
+            const response = await fetch('http://localhost:3001/read-file');
+            if (!response.ok) {
+                throw new Error('Failed to fetch traveler profiles.');
+            }
+            const text = await response.text();
+            setFileContent(JSON.parse(text));
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleChange = (event) => {
@@ -44,6 +88,7 @@ function Form() {
         }));
     };
 
+    // Clear form upon page reload
     useEffect(() => {
         fetch('http://localhost:3001/clear', {
             method: 'POST',
@@ -82,7 +127,8 @@ function Form() {
 
     return (
         <>
-            <h1 id="form">Form</h1>
+            <h1 id="form" className="formTitle">Individual Preference Form</h1>
+            <p>Each member of your group should fill out this form with preferred travel preferences!</p>
             <form onSubmit={handleSubmit}>
                 <Field
                     label="What month or season do you want to travel?"
@@ -150,6 +196,26 @@ function Form() {
                 />
                 <input type="submit" />
             </form>
+
+            <div>
+                {
+                    (() => {
+                        if (fileContent.length === 0) {
+                            return (
+                                <p>No traveler profiles submitted. Please fill out the form to add travelers.</p>
+                            )
+                        } else {
+                            return (
+                                <div class="card-container">
+                                    {fileContent.map((pref, index) => (
+                                        <UserCard key={index} pref={pref} userIndex={index} />
+                                    ))}
+                                </div>
+                            )
+                        }
+                    })()  
+                }
+            </div>
         </>
     );
 }

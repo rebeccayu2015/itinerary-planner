@@ -33,8 +33,15 @@ app.post('/clear', (req, res) => {
     });
 });
 
-app.get("/api/get", (req, res) => {
-    res.json({ message: "Hello from server!" });
+app.get('/read-file', (req, res) => {
+    const filePath = path.join('server', 'formData.json');
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).send('Error reading file');
+        }
+        res.status(200).send("[" + data.slice(0, data.length-1) + "]");
+    });
 });
 
 app.listen(PORT, () => {

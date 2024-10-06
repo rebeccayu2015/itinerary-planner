@@ -11,8 +11,10 @@ nav {
 }
 
 .logo {
-    width: 140px;
-    margin-left: 50px;
+    width: 60px;
+    margin-left: 35px;
+    padding: 10px;
+    filter: contrast(1);
 }
 
 nav ul {
