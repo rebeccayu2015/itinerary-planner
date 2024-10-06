@@ -131,6 +131,30 @@ function Form() {
             <p>Each member of your group should fill out this form with preferred travel preferences!</p>
             <form onSubmit={handleSubmit}>
                 <Field
+                    label="Is there anywhere you would prefer to visit?"
+                    id="dest"
+                    name="dest"
+                    placeholder="i.e. New York City, Japan"
+                    value={formData.dest || ''}
+                    onChange={handleChange}
+                />  
+                <Field
+                    label="How many long do you plan on traveling for?"
+                    id="length"
+                    name="length"
+                    placeholder="i.e. 3 days, 2 weeks"
+                    value={formData.length || ''}
+                    onChange={handleChange}
+                />
+                <Field
+                    label="How many people do you plan on traveling with?"
+                    id="people"
+                    name="people"
+                    placeholder="i.e. 4 peopls, 2 people"
+                    value={formData.people || ''}
+                    onChange={handleChange}
+                />
+                <Field
                     label="What month or season do you want to travel?"
                     id="season"
                     name="season"
