@@ -5,13 +5,19 @@ import Hero from './components/Hero'
 import Form from './components/Form'
 import Locations from './components/Locations'
 
+import "./styles.css";
+
 const App = () => {
   return (
     <>
-      <Navbar />
-      <Hero />
-      <Form />
-      <Locations />
+      <div class="app-container">
+        <Navbar />
+        <div className="content-wrapper">
+          <Hero />
+          <Form />
+          <Locations />
+        </div>
+      </div>
     </>
   )
 }

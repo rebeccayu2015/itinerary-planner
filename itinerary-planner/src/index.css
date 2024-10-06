@@ -18,6 +18,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -46,9 +47,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -59,9 +62,11 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
@@ -69,4 +74,148 @@ button:focus-visible {
 
 .nav-list {
   display: inline;
+}
+
+/* General Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  width: 95%;
+  max-width: 1400px;
+  margin: auto;
+  padding: 20px 0;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 3em;
+  color: #2c3e50;
+}
+
+header p {
+  margin: 10px 0 0;
+  font-size: 1.2em;
+  color: #7f8c8d;
+}
+
+/* Itinerary Card */
+.itinerary-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  overflow-y: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.itinerary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.itinerary-card img.itinerary-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.itinerary-card h2 {
+  color: #27ae60;
+  margin-bottom: 10px;
+}
+
+.itinerary-card h3 {
+  color: #2980b9;
+  margin-top: 20px;
+}
+
+.itinerary-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.itinerary-card ul ul {
+  list-style-type: circle;
+}
+
+.itinerary-card li {
+  margin-bottom: 8px;
+}
+
+.itinerary-card p {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.itinerary-card hr {
+  border: none;
+  border-top: 1px solid #ecf0f1;
+  margin: 20px 0;
+}
+
+.itinerary-card em {
+  color: #95a5a6;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #27ae60;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  color: #7f8c8d;
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
+}
+
+@media (max-width: 1200px) {
+  .itinerary-card h2 {
+    font-size: 1.8em;
+  }
+
+  .itinerary-card h3 {
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2.5em;
+  }
+
+  .itinerary-card h2 {
+    font-size: 1.5em;
+  }
+
+  .itinerary-card h3 {
+    font-size: 1.2em;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
 }
